@@ -15,6 +15,9 @@
 //
 // Please send feedback to project founder Anthony Hand: anthony.hand@gmail.com
 //
+// File version 2013.08.01 (August 1, 2013)
+//	Updates:
+//	- Updated DetectMobileQuick(). Moved the 'Exclude Tablets' logic to the top of the method to fix a logic bug.
 //
 // File version 2013.07.13 (July 13, 2013)
 //	Updates:
@@ -861,12 +864,12 @@ var MobileEsp = {
 	//  This method catches most of the popular modern devices.
 	//  Excludes Apple iPads and other modern tablets.
 	DetectMobileQuick : function() {
-		if (this.initCompleted || this.isMobilePhone)
-			return this.isMobilePhone;
-
 		//Let's exclude tablets.
 		if (this.DetectTierTablet())
 			return false;
+
+		if (this.initCompleted || this.isMobilePhone)
+			return this.isMobilePhone;
 
 		//Most mobile browsing is done on smartphones
 		if (this.DetectSmartphone())

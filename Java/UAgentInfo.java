@@ -1,6 +1,10 @@
 /* *******************************************
 // Copyright 2010-2013, Anthony Hand
 //
+// File version 2013.08.01 (August 1, 2013)
+//	Updates:
+//	- Updated DetectMobileQuick(). Moved the 'Exclude Tablets' logic to the top of the method to fix a logic bug.
+//
 // File version 2013.07.13 (July 13, 2013)
 //	Updates:
 //	- Added support for Tizen: variable and DetectTizen().
@@ -984,14 +988,14 @@ public class UAgentInfo {
      * @return detection of any mobile device using the quicker method
      */
     public boolean detectMobileQuick() {
+        //Let's exclude tablets
+        if (detectTierTablet()) 
+            return false;
+        
 		if ((initCompleted == true) ||
 			(isMobilePhone == true))
 			return isMobilePhone;
 
-        //Let's exclude tablets
-        if (isTierTablet) 
-            return false;
-        
         //Most mobile browsing is done on smartphones
         if (detectSmartphone()) 
             return true;
