@@ -1,6 +1,10 @@
 # *******************************************
 # Copyright 2010-2013, Anthony Hand
 #
+# File version 2013.09.25 (September 25, 2013)
+#	Updates:
+#	- Corrected a bug in detectTierIphone(). A 'self' reference had been forgotten. 
+#
 # File version 2013.07.13 (July 13, 2013)
 #	Updates:
 #	- Added support for Tizen: variable and DetectTizen().
@@ -839,7 +843,7 @@ class UAgentInfo(object):
             or self.detectAndroidPhone() \
             or self.detectWindowsPhone() \
             or self.detectBlackBerry10Phone() \
-            or self.detectBlackBerryWebKit() and detectBlackBerryTouch() \
+            or self.detectBlackBerryWebKit() and self.detectBlackBerryTouch() \
             or self.detectPalmWebOS() \
             or self.detectBada() \
             or self.detectTizen() \
