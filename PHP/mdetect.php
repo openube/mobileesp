@@ -3,6 +3,10 @@
 /* *******************************************
 // Copyright 2010-2013, Anthony Hand
 //
+// File version 2013.10.27 (October 27, 2013)
+//	Updates:
+//	- Made minor update to the InitDeviceScan. Should check Tablet Tier first, then iPhone Tier, then Quick Mobile. 
+//
 // File version 2013.08.01 (August 1, 2013)
 //	Updates:
 //	- Updated DetectMobileQuick(). Moved the 'Exclude Tablets' logic to the top of the method to fix a logic bug.
@@ -217,9 +221,9 @@ class uagent_info
         
         //These tiers are the most useful for web development
         global $isMobilePhone, $isTierTablet, $isTierIphone;
-        $this->isMobilePhone = $this->DetectMobileQuick();
-        $this->isTierIphone = $this->DetectTierIphone();
-        $this->isTierTablet = $this->DetectTierTablet();
+        $this->isTierTablet = $this->DetectTierTablet(); //Do first
+        $this->isTierIphone = $this->DetectTierIphone(); //Do second
+        $this->isMobilePhone = $this->DetectMobileQuick(); //Do third
         
         //Optional: Comment these out if you NEVER use them.
         global $isTierRichCss, $isTierGenericMobile;
@@ -421,8 +425,8 @@ class uagent_info
    // Windows Phone 7.x OR 8 device.
    function DetectWindowsPhone()
    {
-      if (($this->DetectWindowsPhone7() == $this->true)
-			|| ($this->DetectWindowsPhone8() == $this->true))
+      if (($this->DetectWindowsPhone8() == $this->true)
+			|| ($this->DetectWindowsPhone7() == $this->true))
          return $this->true; 
       else
          return $this->false; 
