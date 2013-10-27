@@ -15,6 +15,10 @@
 //
 // Please send feedback to project founder Anthony Hand: anthony.hand@gmail.com
 //
+// File version 2013.10.27 (October 27, 2013)
+//	Updates:
+//	- Made minor update to the InitDeviceScan. Should check Tablet Tier first, then iPhone Tier, then Quick Mobile. 
+//
 // File version 2013.08.01 (August 1, 2013)
 //	Updates:
 //	- Updated DetectMobileQuick(). Moved the 'Exclude Tablets' logic to the top of the method to fix a logic bug.
@@ -232,9 +236,9 @@ var MobileEsp = {
 		this.isAndroidPhone = this.DetectAndroidPhone();
 		
 		//Generally, these tiers are the most useful for web development
-		this.isMobilePhone = this.DetectMobileQuick();
-		this.isTierIphone = this.DetectTierIphone();
-		this.isTierTablet = this.DetectTierTablet();
+		this.isTierIphone = this.DetectTierIphone(); //Do first
+		this.isTierTablet = this.DetectTierTablet(); //Do second
+		this.isMobilePhone = this.DetectMobileQuick(); //Do third
 		
 		//Optional: Comment these out if you NEVER use them
 		this.isTierRichCss = this.DetectTierRichCss();
