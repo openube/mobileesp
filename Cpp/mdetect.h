@@ -221,7 +221,7 @@ public:
 
    //**************************
    //Returns the contents of the User Agent value, in lower case.
-   string GetUagent()
+   string GetUserAgent()
    { 
        return useragent;
    }
