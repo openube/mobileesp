@@ -221,14 +221,14 @@ public:
 
    //**************************
    //Returns the contents of the User Agent value, in lower case.
-   string Get_Uagent()
+   string GetUagent()
    { 
        return useragent;
    }
 
    //**************************
    //Returns the contents of the HTTP Accept value, in lower case.
-   string Get_HttpAccept()
+   string GetHttpAccept()
    { 
        return httpaccept;
    }
